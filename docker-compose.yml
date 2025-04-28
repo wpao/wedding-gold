@@ -1,0 +1,20 @@
+# version: '3.8'
+
+services:
+  frontend:
+    build: .
+    image: albaeus/wedding-gold
+    container_name: wedding-gold
+    restart: on-failure:3
+    ports:
+      - "${VITE_PORT}:${VITE_PORT}" # Menggunakan port dari .env
+    environment:
+      - VITE_API_URL=${VITE_API_URL} # Mengambil URL API dari .env
+    # networks:
+    #   - wedding-network
+    env_file:
+      - .env # Memasukkan file .env untuk konfigurasi
+
+# networks:
+#   wedding-network:
+#     external: true # Menggunakan jaringan eksternal yang sudah ada
