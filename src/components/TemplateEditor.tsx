@@ -29,7 +29,7 @@ const TemplateEditor: React.FC = () => {
   const handleCari = async () => {
     try {
       const res = await axios.get<Template>(
-        `http://localhost:3003/templates/${idInput}/?idTemplate=wedding-roxy223003`
+        `http://192.168.1.4:3003/templates/${idInput}/?idTemplate=wedding-roxy223003`
       );
       setData(res.data);
       setMode("edit");
@@ -51,12 +51,12 @@ const TemplateEditor: React.FC = () => {
     try {
       if (mode === "edit") {
         await axios.put(
-          `http://localhost:3003/templates/${data.idPeople}`,
+          `http://192.168.1.4:3003/templates/${data.idPeople}`,
           data
         );
         alert("Data berhasil diupdate");
       } else {
-        await axios.post("http://localhost:3003/templates", data);
+        await axios.post("http://192.168.1.4:3003/templates", data);
         alert("Data berhasil ditambahkan");
       }
     } catch (error) {
