@@ -19,7 +19,7 @@ const defaultData: Template = {
   email: "",
 };
 
-// http://localhost:3000/templates/f075402c-cfdd-4d3c-8eca-a067543a826a?idTemplate=wedding-roxy223003
+// http://localhost:3003/templates/f075402c-cfdd-4d3c-8eca-a067543a826a?idTemplate=wedding-roxy223003
 
 const TemplateEditor: React.FC = () => {
   const [idInput, setIdInput] = useState("");
@@ -29,7 +29,7 @@ const TemplateEditor: React.FC = () => {
   const handleCari = async () => {
     try {
       const res = await axios.get<Template>(
-        `http://localhost:3000/templates/${idInput}/?idTemplate=wedding-roxy223003`
+        `http://localhost:3003/templates/${idInput}/?idTemplate=wedding-roxy223003`
       );
       setData(res.data);
       setMode("edit");
@@ -51,12 +51,12 @@ const TemplateEditor: React.FC = () => {
     try {
       if (mode === "edit") {
         await axios.put(
-          `http://localhost:3000/templates/${data.idPeople}`,
+          `http://localhost:3003/templates/${data.idPeople}`,
           data
         );
         alert("Data berhasil diupdate");
       } else {
-        await axios.post("http://localhost:3000/templates", data);
+        await axios.post("http://localhost:3003/templates", data);
         alert("Data berhasil ditambahkan");
       }
     } catch (error) {
