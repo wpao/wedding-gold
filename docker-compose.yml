@@ -7,7 +7,7 @@ services:
     container_name: wedding-gold
     restart: on-failure:3
     ports:
-      - "${VITE_PORT}:${VITE_PORT}" # Menggunakan port dari .env
+      - "${VITE_PORT}:5173" # Menggunakan port dari .env
     environment:
       - VITE_API_URL=${VITE_API_URL} # Mengambil URL API dari .env
     networks:
