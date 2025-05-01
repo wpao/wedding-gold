@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "@/lib/axios";
 
 type Template = {
   idPeople: string;
@@ -19,8 +20,6 @@ const defaultData: Template = {
   email: "",
 };
 
-// http://localhost:3003/templates/f075402c-cfdd-4d3c-8eca-a067543a826a?idTemplate=wedding-roxy223003
-
 const TemplateEditor: React.FC = () => {
   const [idInput, setIdInput] = useState("");
   const [data, setData] = useState<Template>(defaultData);
@@ -28,8 +27,8 @@ const TemplateEditor: React.FC = () => {
 
   const handleCari = async () => {
     try {
-      const res = await axios.get<Template>(
-        `http://192.168.1.4:3002/templates/${idInput}/?idTemplate=wedding-roxy223003`
+      const res = await axiosInstance.get<Template>(
+        `/templates/${idInput}/?idTemplate=wedding-roxy223003`
       );
       setData(res.data);
       setMode("edit");
@@ -50,13 +49,10 @@ const TemplateEditor: React.FC = () => {
   const handleSimpan = async () => {
     try {
       if (mode === "edit") {
-        await axios.put(
-          `http://192.168.1.4:3002/templates/${data.idPeople}`,
-          data
-        );
+        await axiosInstance.put(`/templates/${data.idPeople}`, data);
         alert("Data berhasil diupdate");
       } else {
-        await axios.post("http://192.168.1.4:3002/templates", data);
+        await axiosInstance.post("/templates", data);
         alert("Data berhasil ditambahkan");
       }
     } catch (error) {
