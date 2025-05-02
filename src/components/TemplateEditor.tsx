@@ -160,22 +160,9 @@ const TemplateEditor: React.FC = () => {
   const [mode, setMode] = useState<"tambah" | "edit">("tambah");
 
   const handleCari = async (idPeople: string, idTemplate?: string) => {
-    try {
-      const res = await axiosInstance.get<Template>(
-        `/templates/${idPeople}?idTemplate=${idTemplate}`
-      );
-      setData(res.data);
-      setMode("edit");
-    } catch (error) {
-      // Data tidak ditemukan, pakai default
-      setData({ ...defaultData, idPeople });
-      setMode("tambah");
-    }
     // try {
     //   const res = await axiosInstance.get<Template>(
-    //     `/templates/${idPeople}?idTemplate=${
-    //       idTemplate || defaultData.idTemplate
-    //     }`
+    //     `/templates/${idPeople}?idTemplate=${idTemplate}`
     //   );
     //   setData(res.data);
     //   setMode("edit");
@@ -184,6 +171,19 @@ const TemplateEditor: React.FC = () => {
     //   setData({ ...defaultData, idPeople });
     //   setMode("tambah");
     // }
+    try {
+      const res = await axiosInstance.get<Template>(
+        `/templates/${idPeople}?idTemplate=${
+          idTemplate || defaultData.idTemplate
+        }`
+      );
+      setData(res.data);
+      setMode("edit");
+    } catch (error) {
+      // Data tidak ditemukan, pakai default
+      setData({ ...defaultData, idPeople });
+      setMode("tambah");
+    }
   };
 
   useEffect(() => {
