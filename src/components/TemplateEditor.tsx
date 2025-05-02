@@ -162,7 +162,7 @@ const TemplateEditor: React.FC = () => {
   const handleCari = async (idPeople: string, idTemplate?: string) => {
     try {
       const res = await axiosInstance.get<Template>(
-        `/${idPeople}?idTemplate=${idTemplate}`
+        `/templates/${idPeople}?idTemplate=${idTemplate}`
       );
       setData(res.data);
       setMode("edit");
