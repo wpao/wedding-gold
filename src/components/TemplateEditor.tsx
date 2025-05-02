@@ -190,6 +190,10 @@ const TemplateEditor: React.FC = () => {
     const pathParts = window.location.pathname.split("/").filter(Boolean);
     if (pathParts.length === 2) {
       const [idPeople, idTemplate] = pathParts;
+
+      console.log(idInput);
+      console.log(idTemplate);
+
       setIdInput(idPeople);
       handleCari(idPeople, idTemplate);
     }
