@@ -315,7 +315,7 @@ const defaultData: Template = {
 };
 
 const TemplateEditor: React.FC = () => {
-  const [idInput, setIdInput] = useState("");
+  // const [idInput, setIdInput] = useState("");
   const [data, setData] = useState<Template>(defaultData);
   const [mode, setMode] = useState<"tambah" | "edit">("tambah");
 
@@ -326,8 +326,9 @@ const TemplateEditor: React.FC = () => {
     const pathSegments = url.pathname.split("/");
     const idPeople = pathSegments[pathSegments.length - 1];
 
+    // jika ada idTemplate dan idPeople
     if (idTemplate && idPeople) {
-      setIdInput(idPeople); // agar form input ikut terisi
+      // setIdInput(idPeople); // agar form input ikut terisi
       axiosInstance
         .get<Template>(`/templates/${idPeople}?idTemplate=${idTemplate}`)
         .then((res) => {
@@ -341,18 +342,18 @@ const TemplateEditor: React.FC = () => {
     }
   }, []);
 
-  const handleCari = async () => {
-    try {
-      const res = await axiosInstance.get<Template>(
-        `/templates/${idInput}/?idTemplate=wedding-roxy223003`
-      );
-      setData(res.data);
-      setMode("edit");
-    } catch (error) {
-      setData({ ...defaultData, idPeople: idInput });
-      setMode("tambah");
-    }
-  };
+  // const handleCari = async () => {
+  //   try {
+  //     const res = await axiosInstance.get<Template>(
+  //       `/templates/${idInput}/?idTemplate=wedding-roxy223003`
+  //     );
+  //     setData(res.data);
+  //     setMode("edit");
+  //   } catch (error) {
+  //     setData({ ...defaultData, idPeople: idInput });
+  //     setMode("tambah");
+  //   }
+  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({
@@ -378,7 +379,7 @@ const TemplateEditor: React.FC = () => {
 
   return (
     <div className="p-6 max-w-md mx-auto space-y-6">
-      <div className="border p-4 rounded shadow">
+      {/* <div className="border p-4 rounded shadow">
         <h2 className="text-lg font-bold mb-2">Form 1 - Cari ID</h2>
         <input
           type="text"
@@ -393,7 +394,7 @@ const TemplateEditor: React.FC = () => {
         >
           Cari
         </button>
-      </div>
+      </div> */}
 
       <div className="border p-4 rounded shadow">
         <h2 className="text-lg font-bold mb-2">
